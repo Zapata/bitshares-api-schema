@@ -1,0 +1,21 @@
+{
+  "name": "jrgen-plugin-bitshares",
+  "version": "0.0.1",
+  "description": "JRGEN plugin to generate Bitshares API documentation.",
+  "keywords": [
+    "json-rpc",
+    "api",
+    "doc",
+    "bitshares"
+  ],
+  "author": "Zapata <bitshares@dex.trading>",
+  "license": "MIT",
+  "bugs": "https://github.com/zapata/jrgen-plugin-bitshares/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zapata/jrgen-plugin-bitshares.git"
+  },
+  "dependencies": {
+    "jrgen": "1.5.1"
+  }
+}

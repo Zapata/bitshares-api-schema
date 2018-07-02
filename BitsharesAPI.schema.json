@@ -1,0 +1,234 @@
+{
+    "$schema": "https://rawgit.com/mzernetsch/jrgen-schema/master/jrgen.schema.json",
+    "jrgen": "1.0",
+    "jsonrpc": "2.0",
+  
+    "info": {
+      "title": "BitsharesAPI",
+      "description": "Bitshares Decentralized Exchange Json-RPC 2.0 API.",
+      "version": "1.0",
+      "defaultUrl": "https://testnet.dex.trading"
+    },
+  
+    "definitions": {
+    },
+  
+    "methods": {
+        "get_block": {
+            "summary": "Retrieve a full, signed block." ,
+            "tags": ["database"],
+
+            "params": {
+                "type": "array",
+                "items": [
+                    {
+                    "name": "block_num",
+                    "description": "height of the block to be returned",
+                    "type": "string",
+                    "example": "2684"
+                    }
+                ]
+            },
+
+            "result": {
+                "type": "object",
+                "description": "the referenced block, or null if no matching block was found",
+                "properties": {
+                    "previous": {
+                        "description": "hash of a previous block",
+                        "type": "string",
+                        "example": "00000a7b824d25ea2bef9c871b9d2d21cfc2d391"
+                    },
+                    "id": {
+                        "description": "unique block identifier",
+                        "type": "string",
+                        "example": "2684"
+                    },
+                    "timestamp": {
+                        "description": "date and time when the block has been produced, in UTC",
+                        "type": "string",
+                        "example": "2016-01-18T15:07:00"
+                    },
+                    "witness": {
+                        "description": "id of the producing witness",
+                        "type": "string",
+                        "example": "1.6.4"
+                    },
+                    "witness_signature": {
+                        "description": "block content signed with witness private key",
+                        "type": "string",
+                        "example": "205f4ecaeefee7aa0be1fc7e1fbdac0a3d4c2b3b445535d6063ee8901aad83880355243d94da78daf87900cf768301b4df1945546b2b1582a245afb4d793d642f3"
+                    },
+
+                    "transaction_merkle_root": {
+                        "description": "hash of the underlying merkle tree",
+                        "type": "string",
+                        "example": "89240fdcd9317c15ce1d0e1af2315249fc2664af"
+                    },
+                    "extensions": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": []
+                    },
+                    "transactions": {
+                        "type": "array",
+                        "description": "processed transactions in the block",
+                        "example": [],
+                        "items": {
+                            "type": "object",
+                            "description": "a transaction: a set of operations applied atomically",
+                            "example": {},
+                            "properties": {
+                                "operation_results": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "array",
+                                        "items": [
+                                            {
+                                                "name": "type",
+                                                "description": "1 = object_id_type, 2 = asset",
+                                                "type": "number"
+                                            },
+                                            {
+                                                "name": "object_id_or_asset",
+                                                "type": "string"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "signatures": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "extensions": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "example": []
+                                },
+                                "ref_block_prefix": {
+                                    "type": "number"
+                                },
+                                "ref_block_num": {
+                                    "type": "number"
+                                },
+                                "expiration": {
+                                    "type": "string"
+                                },
+                                "operations": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "array",
+                                        "items": [
+                                            {
+                                                "name": "type",
+                                                "description": "operation type",
+                                                "type": "string"
+                                            },
+                                            {
+                                                "name": "operation",
+                                                "description": "operation object",
+                                                "type": "object",
+                                                "properties": {
+                                                }
+                                            }
+                                        ]
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                },
+                "required": ["previous", "timestamp", "id", "witness", "transaction_merkle_root", "extensions", "witness_signature", "transactions"]
+            }
+        },
+        "get_objects": {
+            "summary": "Get the objects corresponding to the provided IDs." ,
+            "tags": ["database"],
+
+            "params": {
+                "type": "array",
+                "items": [
+                    {
+                        "name": "ids",
+                        "description": "IDs of the objects to retrieve",
+                        "type": "array",
+                        "items": {
+                            "type": "string",     
+                            "example": "1.2.4"
+                        }
+                    }
+                ]
+            },
+
+            "result": {
+                "type": "array",
+                "description": "The objects retrieved, in the order they are mentioned in ids",
+                "items": {
+                    "type": "object",
+                    "description": "depends of the kind of requested object",
+                    "properties": {},
+                    "example": {}
+                }
+            }
+        },
+        "get_block_header": {
+            "summary": "Retrieve a block header." ,
+            "tags": ["database"],
+
+            "params": {
+                "type": "array",
+                "items": [
+                    {
+                        "name": "block_num",
+                        "description": "",
+                        "type": "number",
+                        "example": "2684"
+                    }
+                ]
+            },
+
+            "result": {
+                "type": "object",
+                "description": "header of the referenced block, or null if no matching block was found",
+                "properties": {
+                    "previous": {
+                        "description": "hash of a previous block",
+                        "type": "string",
+                        "example": "00000a7b824d25ea2bef9c871b9d2d21cfc2d391"
+                    },
+                    "timestamp": {
+                        "description": "date and time when the block has been produced, in UTC",
+                        "type": "string",
+                        "example": "2016-01-18T15:07:00"
+                    },
+                    "witness": {
+                        "description": "id of the producing witness",
+                        "type": "string",
+                        "example": "1.6.4"
+                    },
+                    "transaction_merkle_root": {
+                        "description": "hash of the underlying merkle tree",
+                        "type": "string",
+                        "example": "89240fdcd9317c15ce1d0e1af2315249fc2664af"
+                    },
+                    "extensions": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": []
+                    }
+                },
+                "required": ["previous", "timestamp", "witness", "transaction_merkle_root", "extensions"]
+            }
+        }
+
+    }
+  }
