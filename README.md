@@ -1,4 +1,4 @@
-Bitshares API Documentation
+Bitshares API Schema
 -----------
 
 An attempt to formalize Bitshares RPC API definition, in order to generate documentation and provide a contract first aproach.
@@ -22,8 +22,8 @@ Then open the generated `BitsharesAPI.html` in your favorite browser.
 Or Use docker:
 
 ```
-docker build . -t bitshares-api-doc
-docker run bitshares-api-doc
+docker build . -t bitshares-api-schema
+docker run -d -p 8080:80 bitshares-api-schema
 ```
 
 # CORS:
@@ -34,6 +34,6 @@ See [how to enable CORS](https://enable-cors.org/) on server side. Node admin wi
 # TODO:
 
 - Use definitions and $ref to factorize schema (see [reuse in documentation](https://spacetelescope.github.io/understanding-json-schema/structuring.html?highlight=one#reuse))
-- Update Jrgen to handle `allOf`, `anyOf`, `` (see [documentation](https://spacetelescope.github.io/understanding-json-schema/reference/combining.html?highlight=allof#allof))
+- Update Jrgen to handle `allOf`, `anyOf` (see [documentation](https://spacetelescope.github.io/understanding-json-schema/reference/combining.html?highlight=allof#allof))
 - Improve Bitshares api methods coverage.
 - Document returned objects more precisely.
